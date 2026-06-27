@@ -21,6 +21,11 @@ const Layout = () => {
             {user ? (
               <>
                 <Link to="/dashboard" className="rounded-full bg-primary px-4 py-2 text-sm text-white">Dashboard</Link>
+                <Link to="/payments" className="text-sm font-medium text-slate-600 hover:text-slate-950">Payments</Link>
+                <Link to="/notifications" className="text-sm font-medium text-slate-600 hover:text-slate-950">Notifications</Link>
+                {user?.role === 'admin' && (
+                  <Link to="/admin" className="text-sm font-medium text-slate-600 hover:text-slate-950">Admin</Link>
+                )}
                 <button onClick={logout} className="text-sm font-medium text-slate-600 hover:text-slate-950">Logout</button>
               </>
             ) : (

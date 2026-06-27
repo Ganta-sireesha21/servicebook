@@ -40,8 +40,13 @@ create table if not exists payments (
   id uuid primary key default uuid_generate_v4(),
   booking_id uuid references bookings(id) on delete cascade,
   amount numeric(10,2) not null,
+  currency text not null default 'INR',
+  provider text not null default 'razorpay',
+  payment_method text,
   payment_status text not null default 'pending',
   transaction_id text,
+  razorpay_payment_id text,
+  razorpay_signature text,
   created_at timestamp with time zone default timezone('utc', now())
 );
 

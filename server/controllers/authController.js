@@ -41,7 +41,13 @@ export const registerUser = async (req, res) => {
   ]).select('*').single();
 
   if (error) {
-    return res.status(500).json({ message: error.message });
+    console.error('Supabase auth insert error:', error);
+    const isRlsError = error.message && error.message.toLowerCase().includes('row-level security');
+    return res.status(500).json({
+      message: isRlsError
+        ? 'Supabase row-level security blocked the user insert. Make sure the backend is using a valid SUPABASE_SERVICE_ROLE_KEY and the database RLS policies permit this action.'
+        : error.message
+    });
   }
 
   const token = signToken({ id: data.id, email: data.email, role: data.role });

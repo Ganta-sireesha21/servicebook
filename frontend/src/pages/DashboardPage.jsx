@@ -40,7 +40,7 @@ const DashboardPage = () => {
             bookings.map((booking) => (
               <div key={booking.id} className="rounded-3xl border border-slate-200 p-6 sm:flex sm:items-center sm:justify-between">
                 <div>
-                  <p className="font-semibold text-slate-950">{booking.service.title}</p>
+                  <p className="font-semibold text-slate-950">{booking.services?.title || 'Unnamed service'}</p>
                   <p className="text-sm text-slate-600">{booking.booking_date} at {booking.booking_time}</p>
                 </div>
                 <span className="mt-4 inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-700 capitalize sm:mt-0">{booking.status}</span>

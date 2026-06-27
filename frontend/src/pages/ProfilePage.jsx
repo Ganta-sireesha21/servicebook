@@ -83,7 +83,7 @@ const ProfilePage = () => {
             <div key={booking.id} className="rounded-3xl border border-slate-200 p-6">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="font-semibold text-slate-950">{booking.service.title}</p>
+                  <p className="font-semibold text-slate-950">{booking.services?.title || 'Unnamed service'}</p>
                   <p className="text-sm text-slate-600">{booking.booking_date} at {booking.booking_time}</p>
                 </div>
                 <div className="flex gap-3">

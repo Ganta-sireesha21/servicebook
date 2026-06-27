@@ -35,16 +35,17 @@ const BookingPage = () => {
     if (!validated || !service) return;
 
     try {
-      await bookingService.createBooking({
+      const response = await bookingService.createBooking({
         service_id: service.id,
         booking_date: bookingDate,
         booking_time: bookingTime,
         notes
       });
-      setStatus('Your booking request was submitted successfully.');
+      setStatus('Your booking request was submitted successfully. Redirecting to payment...');
       setBookingDate('');
       setBookingTime('09:00');
       setNotes('');
+      navigate(`/payment/${response.booking.id}`);
     } catch (error) {
       setStatus('Unable to submit booking. Try again later.');
     }

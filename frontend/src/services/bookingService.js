@@ -10,9 +10,24 @@ const getUserBookings = async () => {
   return data;
 };
 
+const getBookingById = async (id) => {
+  const { data } = await api.get(`/bookings/${id}`);
+  return data;
+};
+
 const cancelBooking = async (id) => {
   const { data } = await api.delete(`/bookings/${id}`);
   return data;
 };
 
-export default { createBooking, getUserBookings, cancelBooking };
+const getAllBookings = async () => {
+  const { data } = await api.get('/bookings');
+  return data;
+};
+
+const adminAction = async (id, action) => {
+  const { data } = await api.post(`/bookings/${id}/action`, { action });
+  return data;
+};
+
+export default { createBooking, getUserBookings, getBookingById, cancelBooking, getAllBookings, adminAction };

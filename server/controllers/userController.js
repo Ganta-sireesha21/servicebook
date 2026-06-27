@@ -23,3 +23,13 @@ export const updateCurrentUser = async (req, res) => {
 
   res.json({ user: data });
 };
+
+export const getAllUsers = async (req, res) => {
+  const { data, error } = await supabase.from('users').select('id, name, email, phone, role, created_at').order('created_at', { ascending: false });
+
+  if (error) {
+    return res.status(500).json({ message: error.message });
+  }
+
+  res.json({ users: data });
+};

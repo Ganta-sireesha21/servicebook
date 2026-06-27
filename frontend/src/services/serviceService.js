@@ -10,6 +10,21 @@ const getById = async (id) => {
   return data;
 };
 
+const createService = async (payload) => {
+  const { data } = await api.post('/services', payload);
+  return data;
+};
+
+const updateService = async (id, payload) => {
+  const { data } = await api.put(`/services/${id}`, payload);
+  return data;
+};
+
+const deleteService = async (id) => {
+  const { data } = await api.delete(`/services/${id}`);
+  return data;
+};
+
 const search = async (query, category) => {
   const params = {};
   if (query) params.search = query;
@@ -18,4 +33,4 @@ const search = async (query, category) => {
   return data;
 };
 
-export default { getAll, getById, search };
+export default { getAll, getById, createService, updateService, deleteService, search };
